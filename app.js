@@ -2,17 +2,17 @@
 
 // #1a
 const mulan = {
-    title:  `Mulan`,
-    main:  `Fa Mulan`,
+    title: `Mulan`,
+    main: `Fa Mulan`,
     
     // 1b
     quote: () => `Dishonor! Dishonor on your whole family!`,
 
     // #1c
-    storyline: () => {
-        return `The movie ${this.title} is about ${this.main}`
+    storyline: function () { 
+        return `The movie ${this.title} is about ${this.main}`;
     }
-}
+};
 
     // #2a
     const tangled = {
@@ -20,22 +20,23 @@ const mulan = {
     main: `Rapunzel`,
 
    // #2b
-   quote:() => `I can't believe I did this! I can't believe I did this! I have to go home! I am never going back! I'm a horrible daughter! BEST DAY EVER!`
+   quote: function() {return `I can't believe I did this! I can't believe I did this! I have to go home! I am never going back! I'm a horrible daughter! BEST DAY EVER!`;
+    },
 
    // #2c
-   storyline: () => {
-   return `The movie ${this.title} is about ${this.main}.`
+   storyline: function() {
+   return `The movie ${this.title} is about ${this.main}`;
    }
-}
+};
   // #3a
-  function disneyMovie (t, m){
+  function DisneyMovie (t, m){
     this.title = t;
     this.main = m;
   }
 
   // #3b
-  disneyMovie.prototype.storyline = () => `The movie ${this.title} is about ${this.main}`;
-
+  disneyMovie.prototype.storyline =function (){return `The movie ${this.title} is about ${this.main}`;
+  }
   // #3c
   const mulan1 = new disneyMovie(`Mulan`, `Fa Mulan`);
 
@@ -47,60 +48,71 @@ const mulan = {
     constructor(t, m){
     this.title = t;
     this.main = m;
-            }
-    }
-
-  // #4b
-  storyline(){
-    return `The movie ${this.title} is about ${this.main}`;
-
-  // #4c
-  const mulan2 = new disneyMovie(`mulan`, `Fa mulan`);
-    //4d
-    const tangled2 = new disneyMovie(`Tangled`, `Rapunzel`);
-    }
-     // 4e
+      }
+      
+      // #4b
+      storyline = function(){
+          return `The movie ${this.title} is about ${this.main}`;
+        }
+        // 4e
      static loveDisneyMovies() {
         return `I Love Disney Movies!`;
+      }
     }
 
-// 4f
-console.log(DM.loveDisneyMovies());
-
-// 5a
-class DMCast extends DM {
-    // 5b
-    constructor(t, m, c){
-        // 5c
-        super(t, m);
-        this.cast = c;
-    }
+  // #4c
+  const mulan2 = new DM(`mulan`, `Fa mulan`);
+  console.log(mulan2);
+  console.log(mulan2.storyline());
     
+  //4d
+    const tangled2 = new DM(`Tangled`, `Rapunzel`);
+    console.log(tangled2);
+    console.log(tangled2.storyline());
+     
+
+    // 4f
+    console.log(DM.loveDisneyMovies());
+    
+    // 5a
+    class DMCast extends DM {
+        // 5b
+        constructor(t, m, c){
+            // 5c
+            super(t, m);
+            this.cast = c;
+           
+            // Bonus
+            
+            // 6a 
+            static create(t, m, c){
+                return new DMCast(t, m, c);
+        }
+  }  
 // 5d
-const mulan3 = new DMCast (`Mulan`, `Fa Mulan`, 
-    {
+const mulan3 = new DMCast (`Mulan`, `Fa Mulan`, {
         mulan: `Ming-Na Wen`, 
         mushu: `Eddie Murphy`, 
         shang: `BD Wong`, 
         theEmperor: `Pat Morita`
     });
-
+    console.log(mulan3);
+    console.log(mulan3.storyline());
+    console.log(DMCast.loveDisneyMovies());
 // 5e
-const tangled3 = new DMCast (`Tangled`, `Rapunzel`,{
+const rapunzel3 = new DMCast (`Tangled`, `Rapunzel`,{
 rapunzel: `Mandy Moore`, 
 flynnRider: `Zachary Levi`, 
 motherGothel: `Donna Murphy`
 });
-
+console.log(rapunzel3);
+console.log(rapunzel3.storyline());
 // Bonus
 
-// 6a 
-static create(t, m, c){
-    const moana = new DMCast(t, m, c); 
-    // 6c ???
-    console.log(moana); 
+
+   
 }
-}
+
 // 6b
 const moana = DMCast.create(`Moana`, `Moana of Motunui`, 
     {
@@ -111,4 +123,4 @@ const moana = DMCast.create(`Moana`, `Moana of Motunui`,
     });
 
 // 6c 
-console.log(moana); // comes out as 'undefined' in console
+console.log(moana); 
